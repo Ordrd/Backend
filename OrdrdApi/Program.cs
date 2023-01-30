@@ -34,7 +34,7 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(
         policy =>
         {
-            policy.WithOrigins("https://landing-page-ordrd.vercel.app/", "https://admin-panel-ordrd.vercel.app/")
+            policy.WithOrigins("https://landing-page-ordrd.vercel.app", "https://admin-panel-ordrd.vercel.app")
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .WithExposedHeaders("Content-Disposition")
