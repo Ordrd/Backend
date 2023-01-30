@@ -142,4 +142,9 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
     endpoints.MapHub<OrderHub>("/orderQueue");
 });
+
+app.UseSwagger();
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ordrd API v1"));
+
+
 app.Run();
