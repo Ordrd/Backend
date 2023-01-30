@@ -34,7 +34,7 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173", "http://localhost:5174")
+            policy.WithOrigins("https://landing-page-lilac-pi-43.vercel.app/", "https://admin-panel-rho-sandy.vercel.app/")
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .WithExposedHeaders("Content-Disposition")
@@ -51,7 +51,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test01", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ordrd API Docs", Version = "v1" });
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
