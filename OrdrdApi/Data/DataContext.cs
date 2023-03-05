@@ -10,6 +10,7 @@ namespace OrdrdApi.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<MenuGroup> Menu{ get; set; }
         public DbSet<Option> Options { get; set; }
         public DbSet<Choice> Choices { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -24,6 +25,12 @@ namespace OrdrdApi.Data
                 .WithMany(b => b.Restaurants)
                 .HasForeignKey(r => r.UserId);
 
+            //MENU GROUP
+            modelBuilder.Entity<MenuGroup>()
+                .HasOne(p => p.User)
+                .WithMany(b => b.MenuGroups)
+                .HasForeignKey(r => r.UserId);
+
             // ITEM
             modelBuilder.Entity<Item>()
                 .HasOne(p => p.User)
@@ -35,6 +42,12 @@ namespace OrdrdApi.Data
                 .HasOne(p => p.Restaurant)
                 .WithMany(b => b.Items)
                 .HasForeignKey(r => r.RestaurantId);
+
+            modelBuilder.Entity<Item>()
+                .HasOne(p => p.MenuGroup)
+                .WithMany(b => b.Items)
+                .HasForeignKey(r => r.MenuGroupId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             // OPTION
             modelBuilder.Entity<Option>()

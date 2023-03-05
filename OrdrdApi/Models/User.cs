@@ -19,6 +19,7 @@ namespace OrdrdApi.Models
         //ER Relations
         public List<Restaurant> Restaurants { get; set; } = new List<Restaurant>();
         public List<Item> Items { get; set; } = new List<Item>();
+        public List<MenuGroup> MenuGroups { get; set; } = new List<MenuGroup>();
         public List<Option> Options { get; set; } = new List<Option>();
         public List<Choice> Choices { get; set; } = new List<Choice>();
         public List<Order> Orders { get; set; } = new List<Order>();

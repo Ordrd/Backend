@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
-using OrdrdApi.DTO;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using OrdrdApi.DTO;
 
 namespace OrdrdApi.Models
 {
@@ -15,17 +12,16 @@ namespace OrdrdApi.Models
         public User? User { get; set; }
 
         //ER Relations
-        public List<Item> Item { get; set; } = new List<Item>();
+        public List<Item> Items { get; set; } = new List<Item>();
 
-        //public static Choice FromChoiceDto(ChoiceDto choice)
-        //{
-        //    return new Choice
-        //    {
-        //        ChoiceId = choice.Id,
-        //        Name = choice.Name,
-        //        Price = choice.Price,
-        //        UserId = choice.UserId,
-        //    };
-        //}
+        public static MenuGroup FromMenuGroupDto(MenuGroupDto menuGroup)
+        {
+            return new MenuGroup
+            {
+                MenuGroupId = menuGroup.Id,
+                Name = menuGroup.Name,
+                UserId = menuGroup.UserId,
+            };
+        }
     }
 }

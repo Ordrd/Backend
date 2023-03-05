@@ -63,7 +63,7 @@ namespace OrdrdApi.Repositories.MenuRepo
                     .ThenInclude(option => option.Choices)
                 .Include(item => item.User)
                 .Include(item => item.Restaurant)
-                .GroupBy(item => item.MenuGroup)
+                .GroupBy(item => item.MenuGroup.Name)
                 .ToListAsync();
             return result;
         }
