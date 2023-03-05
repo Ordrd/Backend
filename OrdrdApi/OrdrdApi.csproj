@@ -35,6 +35,14 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Repositories\MenuGroup\" />
+    <None Remove="Services\MenuGroup\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\MenuGroup\" />
+    <Folder Include="Services\MenuGroup\" />
+  </ItemGroup>
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1development_1json__JsonSchema="https://json.schemastore.org/appsettings.json" /></VisualStudio></ProjectExtensions>
 
 </Project>

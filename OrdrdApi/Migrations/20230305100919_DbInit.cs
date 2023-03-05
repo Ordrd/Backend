@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OrdrdApi.Migrations
 {
     /// <inheritdoc />
-    public partial class DatabaseInit : Migration
+    public partial class DbInit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,6 +31,28 @@ namespace OrdrdApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MenuGroups",
+                columns: table => new
+                {
+                    MenuGroupId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Visible = table.Column<bool>(type: "bit", nullable: false),
+                    OrderIndex = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MenuGroups", x => x.MenuGroupId);
+                    table.ForeignKey(
+                        name: "FK_MenuGroups_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Restaurants",
                 columns: table => new
                 {
@@ -38,10 +60,10 @@ namespace OrdrdApi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LogoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OpenTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    CloseTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    BreakStart = table.Column<TimeSpan>(type: "time", nullable: false),
-                    BreakFinish = table.Column<TimeSpan>(type: "time", nullable: false),
+                    OpenTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CloseTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BreakStart = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BreakFinish = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsDeliveryEnabled = table.Column<bool>(type: "bit", nullable: false),
@@ -67,16 +89,23 @@ namespace OrdrdApi.Migrations
                     ItemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MenuGroup = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
                     PosNumber = table.Column<int>(type: "int", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    RestaurantId = table.Column<int>(type: "int", nullable: false)
+                    RestaurantId = table.Column<int>(type: "int", nullable: false),
+                    MenuGroupId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Items", x => x.ItemId);
+                    table.ForeignKey(
+                        name: "FK_Items_MenuGroups_MenuGroupId",
+                        column: x => x.MenuGroupId,
+                        principalTable: "MenuGroups",
+                        principalColumn: "MenuGroupId");
                     table.ForeignKey(
                         name: "FK_Items_Restaurants_RestaurantId",
                         column: x => x.RestaurantId,
@@ -101,6 +130,8 @@ namespace OrdrdApi.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     OrderType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrderTime = table.Column<int>(type: "int", nullable: false),
+                    OrderPrice = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     RestaurantId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -186,7 +217,7 @@ namespace OrdrdApi.Migrations
                     ChoiceId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(6,2)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(6,2)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     OptionId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -280,6 +311,11 @@ namespace OrdrdApi.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Items_MenuGroupId",
+                table: "Items",
+                column: "MenuGroupId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Items_RestaurantId",
                 table: "Items",
                 column: "RestaurantId");
@@ -287,6 +323,11 @@ namespace OrdrdApi.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Items_UserId",
                 table: "Items",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MenuGroups_UserId",
+                table: "MenuGroups",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -383,6 +424,9 @@ namespace OrdrdApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "MenuGroups");
 
             migrationBuilder.DropTable(
                 name: "Restaurants");

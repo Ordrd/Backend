@@ -6,6 +6,8 @@ namespace OrdrdApi.Models
     {
         public int MenuGroupId { get; set; }
         public string Name { get; set; } = string.Empty;
+        public bool Visible { get; set; } = true;
+        public int OrderIndex { get; set; }
 
         //Foreign keys
         public int UserId { get; set; }
@@ -20,6 +22,8 @@ namespace OrdrdApi.Models
             {
                 MenuGroupId = menuGroup.Id,
                 Name = menuGroup.Name,
+                Visible = menuGroup.IsVisible,
+                OrderIndex = menuGroup.OrderIndex,
                 UserId = menuGroup.UserId,
             };
         }

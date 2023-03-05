@@ -20,6 +20,8 @@ using OrdrdApi.Services.HistoryServ;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Microsoft.OpenApi.Models;
+using OrdrdApi.Services.MenuGroupServ;
+using OrdrdApi.Repositories.MenuGroupRepo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,7 +36,7 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(
         policy =>
         {
-            policy.WithOrigins("https://landing-page-ordrd.vercel.app", "https://admin-panel-ordrd.vercel.app")
+            policy.WithOrigins("https://landing-page-ordrd.vercel.app", "https://admin-panel-ordrd.vercel.app", "http://localhost")
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .WithExposedHeaders("Content-Disposition")
@@ -104,6 +106,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IMenuService, MenuService>();
+builder.Services.AddScoped<IMenuGroupService, MenuGroupService>();
 builder.Services.AddScoped<IHistoryService, HistoryService>();
 builder.Services.AddScoped<IInfrastructureService, InfrastructureService>();
 
@@ -113,6 +116,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRestaurantRepository, RestaurantRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IMenuRepository, MenuRepository>();
+builder.Services.AddScoped<IMenuGroupRepository, MenuGroupRepository>();
 
 
 var logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();

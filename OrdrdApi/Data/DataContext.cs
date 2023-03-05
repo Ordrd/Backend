@@ -10,7 +10,7 @@ namespace OrdrdApi.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<MenuGroup> Menu{ get; set; }
+        public DbSet<MenuGroup> MenuGroups { get; set; }
         public DbSet<Option> Options { get; set; }
         public DbSet<Choice> Choices { get; set; }
         public DbSet<Order> Orders { get; set; }

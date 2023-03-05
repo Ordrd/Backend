@@ -12,15 +12,15 @@ using OrdrdApi.Data;
 namespace OrdrdApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230126144504_ApplyChanges")]
-    partial class ApplyChanges
+    [Migration("20230305100919_DbInit")]
+    partial class DbInit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -63,6 +63,9 @@ namespace OrdrdApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemId"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -71,9 +74,8 @@ namespace OrdrdApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MenuGroup")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("MenuGroupId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -93,11 +95,41 @@ namespace OrdrdApi.Migrations
 
                     b.HasKey("ItemId");
 
+                    b.HasIndex("MenuGroupId");
+
                     b.HasIndex("RestaurantId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("OrdrdApi.Models.MenuGroup", b =>
+                {
+                    b.Property<int>("MenuGroupId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MenuGroupId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderIndex")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Visible")
+                        .HasColumnType("bit");
+
+                    b.HasKey("MenuGroupId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("MenuGroups");
                 });
 
             modelBuilder.Entity("OrdrdApi.Models.Option", b =>
@@ -138,6 +170,9 @@ namespace OrdrdApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("CustomerName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -145,6 +180,9 @@ namespace OrdrdApi.Migrations
                     b.Property<string>("CustomerPhone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("OrderPrice")
+                        .HasColumnType("decimal(6, 2)");
 
                     b.Property<int>("OrderTime")
                         .HasColumnType("int");
@@ -269,14 +307,17 @@ namespace OrdrdApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RestaurantId"));
 
-                    b.Property<TimeSpan>("BreakFinish")
-                        .HasColumnType("time");
+                    b.Property<string>("BreakFinish")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("BreakStart")
-                        .HasColumnType("time");
+                    b.Property<string>("BreakStart")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("CloseTime")
-                        .HasColumnType("time");
+                    b.Property<string>("CloseTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Currency")
                         .IsRequired()
@@ -300,8 +341,9 @@ namespace OrdrdApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("OpenTime")
-                        .HasColumnType("time");
+                    b.Property<string>("OpenTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
@@ -379,6 +421,12 @@ namespace OrdrdApi.Migrations
 
             modelBuilder.Entity("OrdrdApi.Models.Item", b =>
                 {
+                    b.HasOne("OrdrdApi.Models.MenuGroup", "MenuGroup")
+                        .WithMany("Items")
+                        .HasForeignKey("MenuGroupId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("OrdrdApi.Models.Restaurant", "Restaurant")
                         .WithMany("Items")
                         .HasForeignKey("RestaurantId")
@@ -391,7 +439,20 @@ namespace OrdrdApi.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.Navigation("MenuGroup");
+
                     b.Navigation("Restaurant");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("OrdrdApi.Models.MenuGroup", b =>
+                {
+                    b.HasOne("OrdrdApi.Models.User", "User")
+                        .WithMany("MenuGroups")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -538,6 +599,11 @@ namespace OrdrdApi.Migrations
                     b.Navigation("OrderItems");
                 });
 
+            modelBuilder.Entity("OrdrdApi.Models.MenuGroup", b =>
+                {
+                    b.Navigation("Items");
+                });
+
             modelBuilder.Entity("OrdrdApi.Models.Option", b =>
                 {
                     b.Navigation("Choices");
@@ -572,6 +638,8 @@ namespace OrdrdApi.Migrations
                     b.Navigation("Choices");
 
                     b.Navigation("Items");
+
+                    b.Navigation("MenuGroups");
 
                     b.Navigation("Options");
 

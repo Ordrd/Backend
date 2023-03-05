@@ -6,7 +6,8 @@ namespace OrdrdApi.DTO
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public bool IsMultiselectEnabled { get; set; }
+        public bool IsVisible { get; set; }
+        public int OrderIndex { get; set; }
         public int UserId { get; set; }
 
         public static MenuGroupDto FromMenuGroup(MenuGroup menuGroup)
@@ -16,6 +17,8 @@ namespace OrdrdApi.DTO
             {
                 Id = menuGroup.MenuGroupId,
                 Name = menuGroup.Name,
+                IsVisible = menuGroup.Visible,
+                OrderIndex = menuGroup.OrderIndex,
                 UserId = menuGroup.UserId
             };
         }

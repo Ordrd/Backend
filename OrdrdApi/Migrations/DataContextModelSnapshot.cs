@@ -113,14 +113,20 @@ namespace OrdrdApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("OrderIndex")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Visible")
+                        .HasColumnType("bit");
 
                     b.HasKey("MenuGroupId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Menu");
+                    b.ToTable("MenuGroups");
                 });
 
             modelBuilder.Entity("OrdrdApi.Models.Option", b =>
