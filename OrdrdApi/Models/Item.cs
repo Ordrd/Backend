@@ -8,7 +8,6 @@ namespace OrdrdApi.Models
     {
         public int ItemId { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string MenuGroup { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
        
         [Column(TypeName = "decimal(6, 2)")]
@@ -22,6 +21,8 @@ namespace OrdrdApi.Models
         public virtual User? User { get; set; }
         public int RestaurantId { get; set; }
         public virtual Restaurant? Restaurant { get; set; }
+        public int MenuGroupId { get; set; }
+        public virtual MenuGroup? MenuGroup { get; set; }
 
         //ER Relations
         public List<Option> Options { get; set; } = new List<Option>();
@@ -35,7 +36,7 @@ namespace OrdrdApi.Models
             {
                 ItemId = itemDto.Id,
                 Name = itemDto.Name,
-                MenuGroup = itemDto.MenuGroup,
+                MenuGroupId = itemDto.MenuGroupId,
                 Description = itemDto.Description,
                 Price = itemDto.Price,
                 PosNumber = itemDto.PosNumber,

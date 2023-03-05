@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\FilipJurkovic\\Dev\\ordrd\\Backend\\OrdrdApi\\OrdrdApi.csproj": {}
+    "/Users/filipjurkovic/Dev/ordrd/Backend/OrdrdApi/OrdrdApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\FilipJurkovic\\Dev\\ordrd\\Backend\\OrdrdApi\\OrdrdApi.csproj": {
+    "/Users/filipjurkovic/Dev/ordrd/Backend/OrdrdApi/OrdrdApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\FilipJurkovic\\Dev\\ordrd\\Backend\\OrdrdApi\\OrdrdApi.csproj",
+        "projectUniqueName": "/Users/filipjurkovic/Dev/ordrd/Backend/OrdrdApi/OrdrdApi.csproj",
         "projectName": "OrdrdApi",
-        "projectPath": "C:\\Users\\FilipJurkovic\\Dev\\ordrd\\Backend\\OrdrdApi\\OrdrdApi.csproj",
-        "packagesPath": "C:\\Users\\FilipJurkovic\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\FilipJurkovic\\Dev\\ordrd\\Backend\\OrdrdApi\\obj\\",
+        "projectPath": "/Users/filipjurkovic/Dev/ordrd/Backend/OrdrdApi/OrdrdApi.csproj",
+        "packagesPath": "/Users/filipjurkovic/.nuget/packages/",
+        "outputPath": "/Users/filipjurkovic/Dev/ordrd/Backend/OrdrdApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\FilipJurkovic\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/filipjurkovic/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -46,7 +44,7 @@
             },
             "Infobip.Api.Client": {
               "target": "Package",
-              "version": "[2.1.1, )"
+              "version": "[2.1.2, )"
             },
             "Microsoft.AspNet.SignalR": {
               "target": "Package",
@@ -54,31 +52,31 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.3, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.3, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.3, )"
             },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
@@ -124,7 +122,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.200/RuntimeIdentifierGraph.json"
         }
       }
     }

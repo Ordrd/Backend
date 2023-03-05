@@ -7,7 +7,7 @@ namespace OrdrdApi.DTO
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string MenuGroup { get; set; } = string.Empty;
+        public int MenuGroupId { get; set; }
         public string Description { get; set; } = string.Empty;
         [Column(TypeName = "decimal(6, 2)")]
         public decimal Price { get; set; }
@@ -27,7 +27,7 @@ namespace OrdrdApi.DTO
             {
                 Id = item.ItemId, 
                 Name = item.Name,
-                MenuGroup = item.MenuGroup,
+                MenuGroupId = item.MenuGroupId,
                 Description = item.Description,
                 Price = item.Price,
                 PosNumber= item.PosNumber,

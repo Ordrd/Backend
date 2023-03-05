@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{41D0F324-E108-4AC1-9503-39C9288AC2B8}|https" GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.ItemProperties.OrdrdApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="OrdrdApi/appsettings.json">
+    <Files>
+      <File FileName="OrdrdApi/Models/OrderChoice.cs" />
+      <File FileName="OrdrdApi/Models/Item.cs" />
+      <File FileName="OrdrdApi/Models/Option.cs" Line="37" Column="10" />
+      <File FileName="OrdrdApi/appsettings.Development.json" Line="1" Column="1" />
+      <File FileName="OrdrdApi/appsettings.json" Line="3" Column="200" />
+      <File FileName="OrdrdApi/Program.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="OrdrdApi" expanded="True">
+            <Node name="OrdrdApi" expanded="True">
+              <Node name="Models" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+</Properties>
